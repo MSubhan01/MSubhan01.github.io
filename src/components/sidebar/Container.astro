@@ -1,0 +1,81 @@
+---
+
+---
+
+<section class="sidebar-container">
+  <header></header>
+
+  <ul>
+    <li class="explorer">
+      <a class="codicon codicon-files" href="/" aria-label="Home"></a>
+    </li>
+    <li>
+      <a
+        class="codicon codicon-source-control"
+        href="https://github.com/MSubhan01"
+        target="_blank"
+        aria-label="GitHub"></a>
+    </li>
+  </ul>
+</section>
+
+<script>
+  const explorerAnchor = document.querySelector("a.codicon.codicon-files");
+
+  explorerAnchor?.addEventListener("click", (event) => {
+    event.preventDefault();
+    document.body.classList.toggle("hide-explorer-container");
+  });
+</script>
+
+<style lang="less">
+  .sidebar-container {
+    grid-area: sidebar-container;
+    box-sizing: border-box;
+    background-color: var(--bg-color-primary);
+    border-right: 1px solid var(--border-color);
+
+    & > header {
+      height: var(--header-container-size);
+    }
+    & > ul {
+      display: inline-block;
+      margin: 0 auto;
+      padding: 0;
+
+      & > li {
+        display: block;
+        height: 48px;
+        width: 48px;
+        position: relative;
+
+        &.explorer::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          width: 3px;
+          background-color: var(--color-2);
+        }
+        & > a {
+          color: var(--color-1);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 48px;
+          width: 48px;
+          margin: 0;
+          overflow: hidden;
+          font-size: 24px;
+        }
+      }
+    }
+  }
+  :global(.hide-explorer-container)
+    .sidebar-container
+    > ul
+    > li.explorer::before {
+    content: unset;
+  }
+</style>

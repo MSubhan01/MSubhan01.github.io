@@ -1,0 +1,62 @@
+---
+// import Collapse from "../shared/Collapse.astro";
+import { Collapse } from "../react/collapse/collapse";
+import type { CollapseItem, CollapseProps } from "../react/collapse/collapse";
+
+const { pathname } = Astro.url;
+
+const files: CollapseItem[] = [
+  {
+    id: "home",
+    icon: "react",
+    link: "/home",
+    title: "home.html",
+  },
+  {
+    id: "about",
+    icon: "react",
+    link: "/about",
+    title: "about.css",
+  },
+];
+
+const currentFile = files.find((file) => file.link === pathname);
+
+const collapses: CollapseProps[] = [
+  ...(currentFile
+    ? [
+        {
+          id: "open-editor",
+          title: "Open Editors",
+          closeable: pathname !== "/",
+          items: [currentFile],
+        },
+      ]
+    : []),
+  {
+    id: "msubhan01-github-io",
+    title: "MSubhan01.github.io",
+    closeable: false,
+    items: files,
+  },
+];
+---
+
+<section class="explorer-content">
+  {collapses.map((collapse) => <Collapse client:only="react" {...collapse} />)}
+  <!-- <Collapse title="MSubhan01.github.io" /> -->
+</section>
+
+<style lang="less">
+  .explorer-content {
+    display: block;
+    overflow: hidden;
+    height: calc(
+      100vh - var(--header-container-size) - var(--footer-container-size)
+    );
+
+    & > :global(div:not(:first-child)) {
+      border-top: 1px solid var(--border-color);
+    }
+  }
+</style>

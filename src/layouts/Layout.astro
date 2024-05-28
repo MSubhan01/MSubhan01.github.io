@@ -1,0 +1,67 @@
+---
+import "@vscode/codicons/dist/codicon.css";
+import { ViewTransitions } from "astro:transitions";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body>
+    <slot />
+    <style is:global>
+      :root {
+        --font-primary: system-ui, Ubuntu, Droid Sans, sans-serif;
+        --font-secondary: "Droid Sans Mono", "monospace", monospace;
+
+        /* --font-color-primary: #cccccc; */
+
+        --bg-color-primary: #181818;
+        --bg-color-secondary: #1f1f1f;
+
+        --border-color: #2b2b2b;
+
+        --color-1: #cccccc;
+        --color-2: #0078d4;
+
+        --header-container-size: 35px;
+        --sidebar-container-size: 48px;
+        --explorer-container-size: 170px;
+        --editor-container-size: auto;
+        --footer-container-size: 22px;
+      }
+      html {
+        font-family: var(--font-primary);
+        background-color: var(--bg-color-primary);
+        color: var(--color-1);
+      }
+      body {
+        margin: 0;
+      }
+      /* code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+  } */
+    </style>
+  </body>
+</html>

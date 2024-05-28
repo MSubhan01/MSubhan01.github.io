@@ -1,0 +1,30 @@
+---
+import Content from "./Content.astro";
+---
+
+<section class="explorer-container">
+  <header>
+    <span>Explorer</span>
+  </header>
+  <Content />
+</section>
+
+<style lang="less">
+  .explorer-container {
+    grid-area: explorer-container;
+    box-sizing: border-box;
+    background-color: var(--bg-color-primary);
+    border-right: 1px solid var(--border-color);
+    & > header {
+      height: var(--header-container-size);
+      display: flex;
+      align-items: center;
+      padding-left: 20px;
+      font-size: 11px;
+    }
+  }
+
+  :global(.hide-explorer-container) .explorer-container {
+    display: none;
+  }
+</style>

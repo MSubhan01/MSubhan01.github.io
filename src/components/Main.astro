@@ -1,0 +1,34 @@
+---
+import Sidebar from "./sidebar/Container.astro";
+import Explorer from "./explorer/Container.astro";
+import Footer from "./footer/Container.astro";
+---
+
+<main class="main-container">
+  <Sidebar transition:persist />
+  <Explorer transition:persist />
+  <slot />
+  <Footer transition:persist />
+</main>
+
+<style lang="less">
+  .main-container {
+    display: grid;
+    grid-template-columns:
+      var(--sidebar-container-size) var(--explorer-container-size)
+      var(--editor-container-size);
+    grid-template-rows: auto var(--footer-container-size);
+    grid-template-areas:
+      "sidebar-container explorer-container editor-container"
+      "footer-container footer-container footer-container";
+
+    height: 100vh;
+  }
+  :global(.hide-explorer-container) .main-container {
+    /* grid-template-columns: var(--sidebar-container-size) var(--editor-container-size);
+    grid-template-rows: auto var(--footer-container-size); */
+    grid-template-areas:
+      "sidebar-container editor-container editor-container"
+      "footer-container footer-container footer-container";
+  }
+</style>
