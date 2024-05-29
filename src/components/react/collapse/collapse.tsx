@@ -29,8 +29,8 @@ export const Collapse = ({
   const toggle = useCallback(() => setOpen(!open), [open]);
 
   return (
-    <div className={`${styles["collapse-container"]} ${className}`}>
-      <div tabindex="0" className={styles["header"]}>
+    <div key={id} className={`${styles["collapse-container"]} ${className}`}>
+      <div className={styles["header"]}>
         <span onClick={toggle} className="codicon codicon-chevron-right" />
         <span onClick={toggle} className={styles["title"]} title={title}>
           {title}
@@ -39,7 +39,7 @@ export const Collapse = ({
       </div>
       <div
         className={`${styles["content"]}`}
-        style={{ maxHeight: open && `${items.length * 22}px` }}
+        style={{ maxHeight: open ? `${items.length * 22}px` : "" }}
       >
         {items.map((item) => (
           <a
@@ -55,7 +55,6 @@ export const Collapse = ({
             </span>
           </a>
         ))}
-        <slot />
       </div>
     </div>
   );
